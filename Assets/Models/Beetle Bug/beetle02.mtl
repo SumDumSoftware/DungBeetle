@@ -1,0 +1,31 @@
+# 
+# Wavefront material file
+# Created with Kaydara FBX
+# 
+
+newmtl _Beetle_bugLayer_1_Front_Inflation_Material
+map_Kd Layer 1.psd
+Ka 0.500000 0.500000 0.500000
+Kd 0.500000 0.500000 0.500000
+Ks 0.200000 0.200000 0.200000
+illum 2
+Ns 1.522336
+Tr 1.000000
+
+newmtl _Beetle_bugLayer_1_Extrusion_Material
+map_Kd Layer 1 Extrusion Material
+Ka 0.500000 0.500000 0.500000
+Kd 0.500000 0.500000 0.500000
+Ks 0.200000 0.200000 0.200000
+illum 2
+Ns 1.522336
+Tr 1.000000
+
+newmtl _Beetle_bugLayer_1_Back_Inflation_Material
+map_Kd Layer 1.psd
+Ka 0.500000 0.500000 0.500000
+Kd 0.500000 0.500000 0.500000
+Ks 0.200000 0.200000 0.200000
+illum 2
+Ns 1.522336
+Tr 1.000000

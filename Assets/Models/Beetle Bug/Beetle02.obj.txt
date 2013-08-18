@@ -1,0 +1,3 @@
+Unable to locate texture file "C:\Users\jbeshears\Downloads\Conversions\749154 - Beetle Bug\Layer 1.psd".
+Unable to locate texture file "C:\Users\jbeshears\Downloads\Conversions\749154 - Beetle Bug\Layer 1 Extrusion Material".
+Unable to locate texture file "C:\Users\jbeshears\Downloads\Conversions\749154 - Beetle Bug\Layer 1.psd".

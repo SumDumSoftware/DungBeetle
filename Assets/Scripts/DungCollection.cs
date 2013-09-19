@@ -18,6 +18,16 @@ public class DungCollection : MonoBehaviour {
 	//play a sound for turd pickup at the point of the player and then increase size of dungball
 	void TurdPickup(){
 		AudioSource.PlayClipAtPoint (collectSound, transform.position);
+		if(GameObject.Find("PlayerTurd") != null)
+		{
+			GameObject pt = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+			pt.name = "PlayerTurd";
+
+		}
+		else
+		{
+			GameObject pt = GameObject.Find("PlayerTurd");	
+		}
 		//increase size of existing dungball
 	}
 	

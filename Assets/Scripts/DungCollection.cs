@@ -3,31 +3,26 @@ using System.Collections;
 
 public class DungCollection : MonoBehaviour {
 	
-	public AudioClip collectSound;
+	public AudioClip collectSound;	
 	
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	void OnCollisionEnter(Collision theCollision){
+ 		if(theCollision.gameObject.name.Contains("turd")){
+  			Debug.Log("Hit the floor");
+			TurdPickup();
+ 		}
+ 	}
 	
 	//play a sound for turd pickup at the point of the player and then increase size of dungball
 	void TurdPickup(){
-		AudioSource.PlayClipAtPoint (collectSound, transform.position);
-		if(GameObject.Find("PlayerTurd") != null)
+		AudioSource.PlayClipAtPoint(collectSound, transform.position);
+		GameObject pt = GameObject.Find("PlayerTurd");	
+		if(GameObject.Find("PlayerTurd") == null)
 		{
-			GameObject pt = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+			pt = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+			pt.transform.position = transform.position;
 			pt.name = "PlayerTurd";
-
 		}
-		else
-		{
-			GameObject pt = GameObject.Find("PlayerTurd");	
-		}
+		
 		//increase size of existing dungball
 	}
 	

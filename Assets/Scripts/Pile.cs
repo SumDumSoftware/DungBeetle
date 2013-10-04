@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Pile : Turd {
+public class Pile {
 
 	
 	public float rotationSpeed = 100.0f;
@@ -15,11 +15,11 @@ public class Pile : Turd {
 	}
 	
 	//collision detection of powercell
-	void OnTriggerEnter(Collider col){
-		if(col.gameObject.tag == "Player"){
-			col.gameObject.SendMessage ("TurdPickup");
+	//void OnTriggerEnter(Collider col){
+		//if(col.gameObject.tag == "Player"){
+			//col.gameObject.SendMessage ("TurdPickup");
 						
-			Destroy (gameObject);
-		}
-	}
+			//Destroy (gameObject);
+		//}
+	//}
 }

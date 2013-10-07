@@ -4,24 +4,61 @@ using System.Collections;
 public class DungCollection : MonoBehaviour {
 	
 	public AudioClip collectSound;	
+	public float pushPower = 20.0f;
+	public Vector3 force;
+	public float weight = 1.0f;
 	
-	void OnCollisionEnter(Collision theCollision){
- 		if(theCollision.gameObject.name.Contains("turd")){
-  			Debug.Log("Hit the floor");
-			TurdPickup();
- 		}
- 	}
+	
+	void OnControllerColliderHit(ControllerColliderHit hit) {
+		Debug.Log ("The gameobject " + hit.gameObject.name + " was hit.");
+		if(hit.gameObject.name.Contains("turd"))
+		{
+        	TurdPickup(hit.gameObject);
+		}
+		else
+		{
+		Rigidbody body = hit.collider.attachedRigidbody;
+ 
+		// no rigidbody
+		if (body == null || body.isKinematic) { 
+			return; 
+		}
+		
+		force = hit.controller.velocity * pushPower;		 
+		// Apply the push
+		body.AddForceAtPosition(force, hit.point);
+		}
+    }
+	void OnCollisionEnter(Collision collision)
+	{
+		if(collision.gameObject.name.Contains("turd"))
+		{
+			GameObject pt = GameObject.Find("PlayerTurd");
+			DestroyObject(collision.gameObject);
+			AudioSource.PlayClipAtPoint(collectSound, transform.position);
+			pt.transform.localScale += new Vector3(0.2f,0.2f,0.2f);
+		}
+	}
 	
 	//play a sound for turd pickup at the point of the player and then increase size of dungball
-	void TurdPickup(){
-		AudioSource.PlayClipAtPoint(collectSound, transform.position);
+	void TurdPickup(GameObject turd){
 		GameObject pt = GameObject.Find("PlayerTurd");	
-		if(GameObject.Find("PlayerTurd") == null)
+		if(pt == null)
 		{
+			DestroyObject(turd);
+			AudioSource.PlayClipAtPoint(collectSound, transform.position);
 			pt = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-			pt.transform.position = transform.position;
 			pt.name = "PlayerTurd";
+			Rigidbody rb = pt.AddComponent(typeof(Rigidbody)) as Rigidbody;
+			rb.drag = 0.7f;
+			pt.renderer.material.color = new Color32(112,88,22,0);
+			
+			pt.transform.localScale = new Vector3(0.15f,0.15f,0.15f);
+			
+			pt.transform.position = transform.position;
+			pt.transform.position += new Vector3(0f,-0.15f,0.5f);			
 		}
+		
 		
 		//increase size of existing dungball
 	}

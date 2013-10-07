@@ -8,6 +8,7 @@ public class Turd : MonoBehaviour
     // Use this for initialization
     void Awake()
     {
+		Debug.Log ("Creating turds.");
 		int rand = (int)Random.Range (1,20);
 		for(int x=0; x < rand; x++)
 		{

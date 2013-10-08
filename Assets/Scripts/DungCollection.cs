@@ -4,37 +4,45 @@ using System.Collections;
 public class DungCollection : MonoBehaviour {
 	
 	public AudioClip collectSound;	
-	public float pushPower = 20.0f;
+	public float pushPower = 400.0f;
 	public Vector3 force;
-	public float weight = 1.0f;
+	public float weight = 0.1f;
 	
 	
 	void OnControllerColliderHit(ControllerColliderHit hit) {
-		Debug.Log ("The gameobject " + hit.gameObject.name + " was hit.");
+		
 		if(hit.gameObject.name.Contains("turd"))
 		{
+			Debug.Log ("The gameobject " + hit.gameObject.name + " was hit.");
         	TurdPickup(hit.gameObject);
 		}
 		else
 		{
-		Rigidbody body = hit.collider.attachedRigidbody;
+			if(hit.gameObject.name == "PlayerTurd")
+			{
+			Rigidbody body = hit.collider.attachedRigidbody;
  
-		// no rigidbody
-		if (body == null || body.isKinematic) { 
+			// no rigidbody
+			if (body == null || body.isKinematic) { 
 			return; 
-		}
+			}
 		
-		force = hit.controller.velocity * pushPower;		 
-		// Apply the push
-		body.AddForceAtPosition(force, hit.point);
+			force = hit.controller.velocity * pushPower;		 
+			// Apply the push
+			body.AddForceAtPosition(force, hit.point);
+			}
 		}
     }
 	void OnCollisionEnter(Collision collision)
 	{
-		if(collision.gameObject.name.Contains("turd"))
+		Debug.Log("Collider: " + collider.name);
+		
+		Debug.Log("GameObject Collided with: " + collision.gameObject.name);
+		if(collision.gameObject.name.Contains("PlayerTurd"))
 		{
 			GameObject pt = GameObject.Find("PlayerTurd");
-			DestroyObject(collision.gameObject);
+			
+			DestroyObject(collider.gameObject);
 			AudioSource.PlayClipAtPoint(collectSound, transform.position);
 			pt.transform.localScale += new Vector3(0.2f,0.2f,0.2f);
 		}

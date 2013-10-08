@@ -9,7 +9,7 @@ public class Turd : MonoBehaviour
     void Awake()
     {
 		Debug.Log ("Creating turds.");
-		int rand = (int)Random.Range (1,20);
+		int rand = (int)Random.Range (8,20);
 		for(int x=0; x < rand; x++)
 		{
         GameObject turd = (GameObject)Instantiate(Resources.Load("turd"));

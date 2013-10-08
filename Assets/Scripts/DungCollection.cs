@@ -5,7 +5,7 @@ public class DungCollection : MonoBehaviour {
 	
 	public AudioClip collectSound;	
 	public float pushPower = 80000.0f;
-	public Vector3 force;
+	public Vector3 forceDirection;
 	public float weight = 0.1f;
 	
 	
@@ -26,11 +26,10 @@ public class DungCollection : MonoBehaviour {
 			if (body == null || body.isKinematic) { 
 			return; 
 			}
-			force = (hit.controller.velocity)/body.mass;
-				Debug.Log("hit.contoller.velocity = " + hit.controller.velocity);
-				Debug.Log("force = " + force);
+			forceDirection = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
+
 			// Apply the push
-			body.AddForceAtPosition(force, hit.point);
+			body.velocity = forceDirection * (pushPower/body.mass);
 			}
 		}
     }
@@ -60,7 +59,7 @@ public class DungCollection : MonoBehaviour {
 			pt = GameObject.CreatePrimitive(PrimitiveType.Sphere);
 			pt.name = "PlayerTurd";
 			Rigidbody rb = pt.AddComponent(typeof(Rigidbody)) as Rigidbody;
-			rb.drag = 10f;
+			rb.drag = .001f;
 			rb.mass = 1.0f;
 			pt.renderer.material.color = new Color32(112,88,22,0);
 			

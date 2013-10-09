@@ -44,8 +44,9 @@ public class DungCollection : MonoBehaviour {
 			
 			DestroyObject(collider.gameObject);
 			AudioSource.PlayClipAtPoint(collectSound, transform.position);
-			pt.transform.localScale += new Vector3(0.2f,0.2f,0.2f);
-			pt.rigidbody.mass += 1.2f;
+			pt.transform.localScale += new Vector3(0.1f,0.1f,0.1f);
+			pt.rigidbody.mass += 1.1f;
+			pt.rigidbody.drag += 0.005f;
 		}
 	}
 	

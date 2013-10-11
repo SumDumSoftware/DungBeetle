@@ -52,6 +52,7 @@ public class DungCollection : MonoBehaviour {
 	
 	//play a sound for turd pickup at the point of the player and then increase size of dungball
 	void TurdPickup(GameObject turd){
+		Material newMat = Resources.Load("PebblyTurd", typeof(Material)) as Material;
 		GameObject pt = GameObject.Find("PlayerTurd");	
 		if(pt == null)
 		{
@@ -63,6 +64,8 @@ public class DungCollection : MonoBehaviour {
 			rb.drag = .001f;
 			rb.mass = 1.0f;
 			pt.renderer.material.color = new Color32(112,88,22,0);
+			pt.renderer.material = newMat;
+			pt.layer = 9;
 			
 			pt.transform.localScale = new Vector3(0.15f,0.15f,0.15f);
 			

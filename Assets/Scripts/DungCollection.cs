@@ -46,7 +46,6 @@ public class DungCollection : MonoBehaviour {
 			AudioSource.PlayClipAtPoint(collectSound, transform.position);
 			pt.transform.localScale += new Vector3(0.1f,0.1f,0.1f);
 			pt.rigidbody.mass += 1.1f;
-			pt.rigidbody.drag += 0.005f;
 		}
 	}
 	
@@ -61,7 +60,7 @@ public class DungCollection : MonoBehaviour {
 			pt = GameObject.CreatePrimitive(PrimitiveType.Sphere);
 			pt.name = "PlayerTurd";
 			Rigidbody rb = pt.AddComponent(typeof(Rigidbody)) as Rigidbody;
-			rb.drag = .001f;
+			rb.drag = .5f;
 			rb.mass = 1.0f;
 			pt.renderer.material.color = new Color32(112,88,22,0);
 			pt.renderer.material = newMat;

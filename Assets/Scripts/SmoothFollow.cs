@@ -35,7 +35,7 @@ public class SmoothFollow : MonoBehaviour
 		if(pt != null)
 		{
 		Transform target = pt.transform;
-        var newPos = Vector3.zero;
+        var newPos = Vector3.back;
 
         if (useSmoothing)
         {
@@ -68,6 +68,7 @@ public class SmoothFollow : MonoBehaviour
         #endregion
 
         	transform.position = Vector3.Slerp(transform.position, newPos, Time.time);
+			transform.Translate(Vector3.back * 0.5f);
 		}
     }
 }

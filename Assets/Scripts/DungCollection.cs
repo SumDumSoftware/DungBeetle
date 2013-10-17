@@ -46,6 +46,7 @@ public class DungCollection : MonoBehaviour {
 			AudioSource.PlayClipAtPoint(collectSound, transform.position);
 			pt.transform.localScale += new Vector3(0.1f,0.1f,0.1f);
 			pt.rigidbody.mass += 1.1f;
+			ScoreManager.playerScore += 100;
 		}
 	}
 	
@@ -69,7 +70,8 @@ public class DungCollection : MonoBehaviour {
 			pt.transform.localScale = new Vector3(0.15f,0.15f,0.15f);
 			
 			pt.transform.position = transform.position;
-			pt.transform.position += new Vector3(0f,-0.15f,0.5f);			
+			pt.transform.position += new Vector3(0f,-0.15f,0.5f);
+			ScoreManager.playerScore += 1000;
 		}
 		
 		

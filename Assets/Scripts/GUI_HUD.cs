@@ -3,19 +3,25 @@ using System.Collections;
 
 public class GUI_HUD : MonoBehaviour {
 	
-	//Texture2D optimalTurdSize = new Texture2D(250,250);
-	//Texture2D currentTurdSize = new Texture2D(0,0);
+	public GameObject scoreText = new GameObject();
+	public GUIStyle gameStyle = new GUIStyle();
 	
-	//private GUI_CustomControls customControls = new GUI_CustomControls();
-	
-	void Awake(){
-		//customControls = FindObjectOfType(GUI_CustomControls);
-		//customControls.turdHUDButton(new Rect((600)-125, 0, 250,250),0, optimalTurdSize, "Get your turd this big.");
-	}
-
+		
 	void OnGUI()
 	{
-		
+		GUIText gText = (GUIText)scoreText.AddComponent(typeof(GUIText));
+		Font Eastwood = (Font)Resources.Load("Fonts/JellyBelly", typeof(Font));
+		gText.font = Eastwood;
+		gameStyle.font = Eastwood;
+		gText.fontSize = 45;
+		float XPos = 400.0f / Screen.width;
+		float YPos = 300.0f / Screen.height;
+		gText.transform.position = new Vector3(XPos, YPos, 0.0f);
+		float textWidth = gameStyle.CalcSize(new GUIContent(gText.text)).x;
+		float textHeight = gameStyle.CalcSize(new GUIContent(gText.text)).y;
+		gText.material.color = Color.green;
+		GUI.Label(new Rect(450, 0, 250,250), "Score\n" + ScoreManager.playerScore.ToString(), gameStyle);
+		gText.text = "Score\n" + ScoreManager.playerScore.ToString();
 		
 	}
 }

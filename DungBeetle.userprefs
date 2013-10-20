@@ -1,14 +1,17 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GUI_HUD.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Standard Assets\Character Controllers\Sources\Scripts\CharacterMotor.js">
     <Files>
-      <File FileName="Assets\Scripts\GUI_HUD.cs" Line="15" Column="17" />
-      <File FileName="Assets\Scripts\DungCollection.cs" Line="49" Column="36" />
+      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\FPSInputController.js" Line="28" Column="3" />
+      <File FileName="Assets\Scripts\ScoreManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GUI_HUD.cs" Line="39" Column="36" />
+      <File FileName="Assets\Scripts\DungCollection.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Turd.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\PlayerTurd.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\SmoothFollow.cs" Line="60" Column="10" />
-      <File FileName="Assets\Scripts\ScoreManager.cs" Line="18" Column="1" />
-      <File FileName="Assets\Scripts\GUI_Camera.cs" Line="18" Column="58" />
+      <File FileName="Assets\Scripts\SmoothFollow.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GUI_Camera.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PlayerCollisions.cs" Line="10" Column="3" />
+      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\CharacterMotor.js" Line="197" Column="84" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -25,6 +25,7 @@ function Update () {
 		
 		// Multiply the normalized direction vector by the modified length
 		directionVector = directionVector * directionLength;
+		
 	}
 	
 	// Apply the direction to the CharacterMotor

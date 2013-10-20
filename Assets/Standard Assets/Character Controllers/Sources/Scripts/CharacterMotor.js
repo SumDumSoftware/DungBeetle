@@ -181,6 +181,8 @@ function Awake () {
 }
 
 private function UpdateFunction () {
+
+	
 	// We copy the actual velocity into a temporary variable that we can manipulate.
 	var velocity : Vector3 = movement.velocity;
 	
@@ -189,7 +191,16 @@ private function UpdateFunction () {
 	
 	// Apply gravity and jumping force
 	velocity = ApplyGravityAndJumping (velocity);
+	// Apply particle dust effects
+	var speed = Mathf.Abs(movement.velocity.x) + Mathf.Abs(movement.velocity.z);
+	if(controller.particleSystem.emissionRate > 0 && speed == 0){
+		controller.particleSystem.emissionRate = controller.particleSystem.emissionRate/3 - 1;
+	}
+	if(controller.particleSystem.emissionRate < 300){
+		controller.particleSystem.emissionRate = controller.particleSystem.emissionRate + speed/3;
+	}
 	
+	Debug.Log(controller.particleSystem.emissionRate);
 	// Moving platform support
 	var moveDistance : Vector3 = Vector3.zero;
 	if (MoveWithPlatform()) {
@@ -293,6 +304,7 @@ private function UpdateFunction () {
 		SubtractNewPlatformVelocity();
 		
 		SendMessage("OnLand", SendMessageOptions.DontRequireReceiver);
+		controller.particleSystem.emissionRate = controller.particleSystem.emissionRate + 500;
 	}
 	
 	// Moving platforms support

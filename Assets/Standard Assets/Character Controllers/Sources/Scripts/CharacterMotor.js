@@ -200,7 +200,7 @@ private function UpdateFunction () {
 		controller.particleSystem.emissionRate = controller.particleSystem.emissionRate + speed/3;
 	}
 	
-	Debug.Log(controller.particleSystem.emissionRate);
+	//Debug.Log(controller.particleSystem.emissionRate);
 	// Moving platform support
 	var moveDistance : Vector3 = Vector3.zero;
 	if (MoveWithPlatform()) {

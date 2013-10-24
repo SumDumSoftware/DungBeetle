@@ -41,11 +41,15 @@ public class DungCollection : MonoBehaviour {
 		if(collision.gameObject.name.Contains("PlayerTurd"))
 		{
 			GameObject pt = GameObject.Find("PlayerTurd");
+			GameObject ms = GameObject.Find("Magnetosphere");
 			
 			DestroyObject(collider.gameObject);
 			AudioSource.PlayClipAtPoint(collectSound, transform.position);
 			pt.transform.localScale += new Vector3(0.1f,0.1f,0.1f);
-			pt.rigidbody.mass += 1.1f;
+			ms.transform.localPosition += Vector3.forward/3;
+			ms.transform.localScale += new Vector3(0.5f,0.5f,0.5f);
+			
+			//pt.rigidbody.mass += 0.5f;
 			ScoreManager.playerScore += 100;
 		}
 	}

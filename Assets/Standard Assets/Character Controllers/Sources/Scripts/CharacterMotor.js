@@ -193,11 +193,13 @@ private function UpdateFunction () {
 	velocity = ApplyGravityAndJumping (velocity);
 	// Apply particle dust effects
 	var speed = Mathf.Abs(movement.velocity.x) + Mathf.Abs(movement.velocity.z);
-	if(controller.particleSystem.emissionRate > 0 && speed == 0){
-		controller.particleSystem.emissionRate = controller.particleSystem.emissionRate/3 - 1;
+	var ps : GameObject;
+	ps = GameObject.Find("Dust");
+	if(ps.particleSystem.emissionRate > 0 && speed == 0){
+		ps.particleSystem.emissionRate = ps.particleSystem.emissionRate/3 - 1;
 	}
-	if(controller.particleSystem.emissionRate < 300){
-		controller.particleSystem.emissionRate = controller.particleSystem.emissionRate + speed/3;
+	if(ps.particleSystem.emissionRate < 300){
+		ps.particleSystem.emissionRate = ps.particleSystem.emissionRate + speed/3;
 	}
 	
 	//Debug.Log(controller.particleSystem.emissionRate);
@@ -304,7 +306,7 @@ private function UpdateFunction () {
 		SubtractNewPlatformVelocity();
 		
 		SendMessage("OnLand", SendMessageOptions.DontRequireReceiver);
-		controller.particleSystem.emissionRate = controller.particleSystem.emissionRate + 500;
+		ps.particleSystem.emissionRate = ps.particleSystem.emissionRate + 500;
 	}
 	
 	// Moving platforms support

@@ -30,6 +30,7 @@ public class DungCollection : MonoBehaviour {
 
 			// Apply the push
 			body.velocity = forceDirection * (pushPower/body.mass);
+				
 			}
 		}
     }
@@ -65,7 +66,7 @@ public class DungCollection : MonoBehaviour {
 			pt = GameObject.CreatePrimitive(PrimitiveType.Sphere);
 			pt.name = "PlayerTurd";
 			Rigidbody rb = pt.AddComponent(typeof(Rigidbody)) as Rigidbody;
-			rb.drag = .5f;
+			rb.drag = .95f;
 			rb.mass = 1.0f;
 			pt.renderer.material.color = new Color32(112,88,22,0);
 			pt.renderer.material = newMat;

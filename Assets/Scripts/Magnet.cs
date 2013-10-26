@@ -16,6 +16,7 @@ public class Magnet : MonoBehaviour {
 		
 	}
 	
+	
 	void OnTriggerStay(Collider other) {
 		
 		GameObject pt = GameObject.Find("PlayerTurd");
@@ -28,10 +29,12 @@ public class Magnet : MonoBehaviour {
 			lastPosition = transform.position;
 			Debug.Log("Speed is " + speed);
 			pt.transform.position = Vector3.Lerp(pt.transform.position, ms.transform.position, increment);
-            pt.transform.rotation = Quaternion.Slerp(Quaternion.LookRotation(new Vector3(pb.rigidbody.velocity.x,0,pb.rigidbody.velocity.z)), pt.transform.rotation, speed);
-			Debug.Log("Rotation: " + pt.transform.rotation);
+			pt.rigidbody.angularVelocity = new Vector3(pb.rigidbody.velocity.x,0,pb.rigidbody.velocity.z);
+			
+			Debug.Log("Rotation: " + pt.rigidbody.angularVelocity.ToString());
 		}
         
     }
+ 
 	
 }

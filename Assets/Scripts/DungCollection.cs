@@ -59,6 +59,7 @@ public class DungCollection : MonoBehaviour {
 	void TurdPickup(GameObject turd){
 		Material newMat = Resources.Load("PebblyTurd", typeof(Material)) as Material;
 		GameObject pt = GameObject.Find("PlayerTurd");	
+		GameObject pb = GameObject.Find("playerbeetle");
 		if(pt == null)
 		{
 			DestroyObject(turd);
@@ -74,8 +75,9 @@ public class DungCollection : MonoBehaviour {
 			
 			pt.transform.localScale = new Vector3(0.15f,0.15f,0.15f);
 			
-			pt.transform.position = transform.position;
-			pt.transform.position += new Vector3(0f,-0.15f,0.5f);
+			Vector3 fwd = transform.TransformDirection(Vector3.forward);
+			pt.transform.position = pb.transform.position + fwd/3;
+			
 			ScoreManager.playerScore += 1000;
 		}
 		

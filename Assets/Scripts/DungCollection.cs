@@ -62,7 +62,7 @@ public class DungCollection : MonoBehaviour {
 		GameObject pb = GameObject.Find("playerbeetle");
 		if(pt == null)
 		{
-			DestroyObject(turd);
+			
 			AudioSource.PlayClipAtPoint(collectSound, transform.position);
 			pt = GameObject.CreatePrimitive(PrimitiveType.Sphere);
 			pt.name = "PlayerTurd";
@@ -75,14 +75,26 @@ public class DungCollection : MonoBehaviour {
 			
 			pt.transform.localScale = new Vector3(0.15f,0.15f,0.15f);
 			
-			Vector3 fwd = transform.TransformDirection(Vector3.forward);
-			pt.transform.position = pb.transform.position + fwd/3;
+			//Vector3 fwd = transform.TransformDirection(Vector3.forward);
+			//pt.transform.position = pb.transform.position + fwd/3;
+			//animateTurdBuild(turd);
+			pt.transform.position = turd.rigidbody.position;
+			DestroyObject(turd);
 			
 			ScoreManager.playerScore += 1000;
 		}
-		
-		
 		//increase size of existing dungball
+	}
+	
+	void animateTurdBuild(GameObject turd){
+		GameObject pb = GameObject.Find("RockMesh");
+		Vector3 rememberBeetlePos = pb.rigidbody.position;
+		
+		for(int x=0; x < 10000; x++)
+		{
+			pb.rigidbody.position = Random.onUnitSphere * 10;			
+		}
+		
 	}
 	
 	//need to create a function to check if there is a dungball, if not, instantiate one on FPC when picking up dung first time

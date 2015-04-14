@@ -14,7 +14,12 @@ public class Turd : MonoBehaviour
 		{
         GameObject turd = (GameObject)Instantiate(Resources.Load("turd"));
 			turd.name = "turd";
-        	turd.transform.position = new Vector3(Random.Range (1,21), 0.187F, Random.Range (1,21));
+			float horizontal = Random.Range (1,21);
+			float vertical = Random.Range (1,21);
+			Vector3 location = new Vector3(horizontal,0, vertical);
+			float height = Terrain.activeTerrain.SampleHeight(location);
+			height += .01f;
+        	turd.transform.position = new Vector3(horizontal, height, vertical);
 		}
     }
 

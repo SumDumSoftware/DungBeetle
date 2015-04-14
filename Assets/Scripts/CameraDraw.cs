@@ -5,8 +5,8 @@ public class CameraDraw : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		 camera.enabled = false; // We don't want this camera drawing normally
-		 camera.clearFlags = CameraClearFlags.Depth; // Transparent where no objects
+		 GetComponent<Camera>().enabled = false; // We don't want this camera drawing normally
+		 GetComponent<Camera>().clearFlags = CameraClearFlags.Depth; // Transparent where no objects
 	}
 	
 	// Update is called once per frame
@@ -17,7 +17,7 @@ public class CameraDraw : MonoBehaviour {
 	{
 		GUILayout.Label("There are 3D objects on top of this!");
 		if (Event.current.type == EventType.Repaint)
-			camera.Render(); // We want it drawing NOW
+			GetComponent<Camera>().Render(); // We want it drawing NOW
 		GUILayout.Label("There are 3D objects beneath this!");	
 	}
 }

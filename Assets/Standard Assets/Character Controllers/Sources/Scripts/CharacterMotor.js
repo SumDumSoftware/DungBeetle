@@ -195,11 +195,11 @@ private function UpdateFunction () {
 	var speed = Mathf.Abs(movement.velocity.x) + Mathf.Abs(movement.velocity.z);
 	var ps : GameObject;
 	ps = GameObject.Find("Dust");
-	if(ps.particleSystem.emissionRate > 0 && speed == 0){
-		ps.particleSystem.emissionRate = ps.particleSystem.emissionRate/3 - 1;
+	if(ps.GetComponent.<ParticleSystem>().emissionRate > 0 && speed == 0){
+		ps.GetComponent.<ParticleSystem>().emissionRate = ps.GetComponent.<ParticleSystem>().emissionRate/3 - 1;
 	}
-	if(ps.particleSystem.emissionRate < 300){
-		ps.particleSystem.emissionRate = ps.particleSystem.emissionRate + speed/3;
+	if(ps.GetComponent.<ParticleSystem>().emissionRate < 300){
+		ps.GetComponent.<ParticleSystem>().emissionRate = ps.GetComponent.<ParticleSystem>().emissionRate + speed/3;
 	}
 	
 	//Debug.Log(controller.particleSystem.emissionRate);
@@ -306,7 +306,7 @@ private function UpdateFunction () {
 		SubtractNewPlatformVelocity();
 		
 		SendMessage("OnLand", SendMessageOptions.DontRequireReceiver);
-		ps.particleSystem.emissionRate = ps.particleSystem.emissionRate + 500;
+		ps.GetComponent.<ParticleSystem>().emissionRate = ps.GetComponent.<ParticleSystem>().emissionRate + 500;
 	}
 	
 	// Moving platforms support

@@ -12,17 +12,17 @@ public class MainMenuBtns : MonoBehaviour {
 	
 	// Change menu items to mouse rollover state
 	void OnMouseEnter(){
-		guiTexture.texture = rollOverTexture;	
+		GetComponent<GUITexture>().texture = rollOverTexture;	
 	}
 	
 	// Change menu items back to rest state
 	void OnMouseExit(){
-		guiTexture.texture = normalTexture;
+		GetComponent<GUITexture>().texture = normalTexture;
 	}
 	
 	// Sound and load level upon selection of play
 	IEnumerator OnMouseUp(){
-		audio.PlayOneShot (beep);	
+		GetComponent<AudioSource>().PlayOneShot (beep);	
 		yield return new WaitForSeconds(0.7f);
 		if (quitButton){
 			Application.Quit ();

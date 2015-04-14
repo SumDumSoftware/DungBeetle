@@ -29,14 +29,14 @@ public class DungCollection : MonoBehaviour {
 			forceDirection = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
 
 			// Apply the push
-			body.velocity = forceDirection * (pushPower/body.mass);
+			body.velocity = forceDirection * (pushPower/(body.mass/2));
 				
 			}
 		}
     }
 	void OnCollisionEnter(Collision collision)
 	{
-		Debug.Log("Collider: " + collider.name);
+		Debug.Log("Collider: " + GetComponent<Collider>().name);
 		
 		Debug.Log("GameObject Collided with: " + collision.gameObject.name);
 		if(collision.gameObject.name.Contains("PlayerTurd"))
@@ -44,9 +44,12 @@ public class DungCollection : MonoBehaviour {
 			GameObject pt = GameObject.Find("PlayerTurd");
 			GameObject ms = GameObject.Find("Magnetosphere");
 			
-			DestroyObject(collider.gameObject);
+			DestroyObject(GetComponent<Collider>().gameObject);
 			AudioSource.PlayClipAtPoint(collectSound, transform.position);
 			pt.transform.localScale += new Vector3(0.1f,0.1f,0.1f);
+			pt.GetComponent<Rigidbody>().angularVelocity = new Vector3(0f,0f,0f);
+			pt.GetComponent<Rigidbody>().velocity = new Vector3(0f,0f,0f);
+			pt.GetComponent<Rigidbody>().angularDrag += 4f;
 			ms.transform.localPosition += Vector3.forward/3;
 			ms.transform.localScale += new Vector3(0.5f,0.5f,0.5f);
 			
@@ -68,9 +71,10 @@ public class DungCollection : MonoBehaviour {
 			pt.name = "PlayerTurd";
 			Rigidbody rb = pt.AddComponent(typeof(Rigidbody)) as Rigidbody;
 			rb.drag = .95f;
+			rb.angularDrag = 80.0f;
 			rb.mass = 1.0f;
-			pt.renderer.material.color = new Color32(112,88,22,0);
-			pt.renderer.material = newMat;
+			pt.GetComponent<Renderer>().material.color = new Color32(112,88,22,0);
+			pt.GetComponent<Renderer>().material = newMat;
 			pt.layer = 9;
 			
 			pt.transform.localScale = new Vector3(0.15f,0.15f,0.15f);
@@ -78,7 +82,7 @@ public class DungCollection : MonoBehaviour {
 			//Vector3 fwd = transform.TransformDirection(Vector3.forward);
 			//pt.transform.position = pb.transform.position + fwd/3;
 			//animateTurdBuild(turd);
-			pt.transform.position = turd.rigidbody.position;
+			pt.transform.position = turd.GetComponent<Rigidbody>().position;
 			DestroyObject(turd);
 			
 			ScoreManager.playerScore += 1000;
@@ -88,11 +92,11 @@ public class DungCollection : MonoBehaviour {
 	
 	void animateTurdBuild(GameObject turd){
 		GameObject pb = GameObject.Find("RockMesh");
-		Vector3 rememberBeetlePos = pb.rigidbody.position;
+		Vector3 rememberBeetlePos = pb.GetComponent<Rigidbody>().position;
 		
 		for(int x=0; x < 10000; x++)
 		{
-			pb.rigidbody.position = Random.onUnitSphere * 10;			
+			pb.GetComponent<Rigidbody>().position = Random.onUnitSphere * 10;			
 		}
 		
 	}
